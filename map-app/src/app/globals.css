@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.leaflet-tooltip.map-label {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: #333; /* Text color */
+  }

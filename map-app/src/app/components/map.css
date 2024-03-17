@@ -1,0 +1,15 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+#leaflet-container {
+    background-color:rgba(255,0,0,0.0);
+}
+
+.leaflet-tooltip.map-label {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: #333; /* Text color */
+  }

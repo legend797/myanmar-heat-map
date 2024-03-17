@@ -46,7 +46,7 @@ const Map = () => {
     }
   }, []);
   
-  const onEachFeatureStateRegion  = (feature, layer) => {
+  const OnEachFeatureStateRegion  = (feature, layer) => {
     const map = useMap();
     if (feature.properties && feature.properties.ST) {
       if (feature.properties.ST === "Tanintharyi") {
@@ -80,7 +80,7 @@ const Map = () => {
   };
 
 
-  const onEachFeatureTownship  = (feature, layer) => {
+  const OnEachFeatureTownship  = (feature, layer) => {
     const map = useMap(); // Assuming you're using Leaflet's useMap hook for Next.js
     if (feature.properties && feature.properties.ts_eng) {
         const townshipName = feature.properties.ts_eng;
@@ -149,7 +149,7 @@ const Map = () => {
            {currentGeoJSON && (
             <GeoJSON
               data={currentGeoJSON}
-              onEachFeature={currentGeoJSON === townshipGeoJSON ? onEachFeatureTownship : onEachFeatureStateRegion}
+              onEachFeature={currentGeoJSON === townshipGeoJSON ? OnEachFeatureTownship : OnEachFeatureStateRegion}
               style={{
                 color: "#2A6AA4",
                 weight: "1",

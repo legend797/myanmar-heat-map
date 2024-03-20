@@ -20,31 +20,11 @@ import { HeatmapLayer } from "react-leaflet-heatmap-layer-v3";
 
 import heatmapData from '@/app/assets/heatmapdata'
 
-const Map = () => {
-  const mapRef = useRef(null);
-  const [currentGeoJSON, setCurrentGeoJSON] = useState(myanmarGeoJSON);
+const HeatMap = () => {
+  
  
   
-  useEffect(() => {
-    const map = mapRef.current;
-
-    const handleZoomEnd = () => {
-      const zoomLevel = map.getZoom();
-      if (zoomLevel > 5) {
-        setCurrentGeoJSON(myanmarGeoJSON);
-      } else {
-        setCurrentGeoJSON(townshipGeoJSON);
-      }
-    };
-
-    if (map) {
-      map.on('zoomend', handleZoomEnd);
-
-      return () => {
-        map.off('zoomend', handleZoomEnd);
-      };
-    }
-  }, []);
+  
   
   const OnEachFeatureStateRegion  = (feature, layer) => {
     const map = useMap();
@@ -80,33 +60,33 @@ const Map = () => {
   };
 
 
-  const OnEachFeatureTownship  = (feature, layer) => {
-    const map = useMap(); // Assuming you're using Leaflet's useMap hook for Next.js
-    if (feature.properties && feature.properties.ts_eng) {
-        const townshipName = feature.properties.ts_eng;
+//   const OnEachFeatureTownship  = (feature, layer) => {
+//     const map = useMap(); // Assuming you're using Leaflet's useMap hook for Next.js
+//     if (feature.properties && feature.properties.ts_eng) {
+//         const townshipName = feature.properties.ts_eng;
         
-        // Calculate the centroid of the polygon
-        const centroid = layer.getBounds().getCenter();
+//         // Calculate the centroid of the polygon
+//         const centroid = layer.getBounds().getCenter();
 
-        L.tooltip({
-            permanent: true,
-            direction: "center",
-            className: "map-label",
-        })
-        .setLatLng(centroid)
-        .setContent(townshipName)
-        .addTo(map);
-    } else {
-        // If township name is not available, bind tooltip to layer
-        layer
-            .bindTooltip("Township Name Not Available", {
-                permanent: true,
-                direction: "center",
-                className: "map-label",
-            })
-            .openTooltip();
-    }
-};
+//         L.tooltip({
+//             permanent: true,
+//             direction: "center",
+//             className: "map-label",
+//         })
+//         .setLatLng(centroid)
+//         .setContent(townshipName)
+//         .addTo(map);
+//     } else {
+//         // If township name is not available, bind tooltip to layer
+//         layer
+//             .bindTooltip("Township Name Not Available", {
+//                 permanent: true,
+//                 direction: "center",
+//                 className: "map-label",
+//             })
+//             .openTooltip();
+//     }
+// };
 
 
 
@@ -129,7 +109,7 @@ const Map = () => {
   const heatmapOptions = {
     radius: 25,
     blur: 15,
-    maxZoom: 18,
+    
     minOpacity: 0.5,
     maxOpacity: 1,
   };
@@ -140,25 +120,26 @@ const Map = () => {
         <MapContainer
           id="leaflet-container"
           center={[21.9162, 95.956]}
-          ref={mapRef}
-          zoom={5}
+          zoom={6}
+          
+        
           {...zoomPropperties}
           scrollWheelZoom={false}
           className="h-[60vh] sm:h-[80vh] w-1/2 flex justify-center"
         >
-           {currentGeoJSON && (
+          
             <GeoJSON
-              data={currentGeoJSON}
-              onEachFeature={currentGeoJSON === townshipGeoJSON ? OnEachFeatureTownship : OnEachFeatureStateRegion}
+              data={myanmarGeoJSON}
+              onEachFeature={OnEachFeatureStateRegion}
               style={{
                 color: "#2A6AA4",
                 weight: "1",
               }}
-              whenCreated={mapInstance => {
-                mapRef.current = mapInstance;
-              }}
+              // whenCreated={mapInstance => {
+              //   mapRef.current = mapInstance;}}
+              
             />
-          )}
+          
           <HeatmapLayer
             fitBoundsOnLoad
             fitBoundsOnUpdate
@@ -183,6 +164,4 @@ const Map = () => {
   );
 };
 
-export default Map;
-
-
+export default HeatMap;

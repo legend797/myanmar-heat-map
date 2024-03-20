@@ -7,6 +7,7 @@ import { GeoJSON, MapContainer, useMap, TileLayer } from "react-leaflet";
 import myanmarGeoJSON from "@/app/assets/state_region.json";
 import townshipGeoJSON from "@/app/assets/township2.json";
 import "leaflet/dist/leaflet.css"; // Import Leaflet CSS
+import HorizonBarChart from "./BarChart";
 
 
 const SetBounds = ({ geoJsonData }) => {
@@ -87,6 +88,8 @@ const DataMap = () => {
       >
         <SetBounds geoJsonData={myanmarGeoJSON} />
       </MapContainer>
+      {/* Bar Chart */}
+      <HorizonBarChart/>
     </div>
   );
 };

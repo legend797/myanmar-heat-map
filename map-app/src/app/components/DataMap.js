@@ -80,7 +80,8 @@ const DataMap = () => {
   };
 
   return (
-    <div className="flex">
+    <section className=" pt-[15vh] px-5 sm:px-12 md:px-32 w-full pb-12">
+    <div className="flex justify-center items-center  gap-[30px]">
       <MapContainer
         zoom={10}
         {...zoomPropperties}
@@ -89,8 +90,11 @@ const DataMap = () => {
         <SetBounds geoJsonData={myanmarGeoJSON} />
       </MapContainer>
       {/* Bar Chart */}
+      <div className="w-1/2 h-[100px]">
       <HorizonBarChart/>
+      </div>
     </div>
+    </section>
   );
 };
 export default DataMap;

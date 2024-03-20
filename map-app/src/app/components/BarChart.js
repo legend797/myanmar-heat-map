@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -6,37 +6,37 @@ import {
   BarElement,
   Title,
   Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
   BarElement,
   Title,
-  
+
   Legend
 );
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+const labels = ["January", "February", "March", "April", "May"];
+const barColors = ["#FF775D", "#FFB45D", "#8B5DFF", "#70E457", "#FF5DBC"];
 
 export const data = {
   labels,
   datasets: [
     {
-      label: 'Dataset 1',
+      label: '',
       data: labels.map(() => 10),
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+
+      backgroundColor: labels.map((_, index) => barColors[index]),
     },
   ],
 };
 
-const customLabels = ['100', '200', '300', '400', '500', '600', '700'];
+// const customLabels = ['100', '200', '300', '400', '500', '600', '700'];
 
 export const options = {
-  indexAxis: 'y',
+  indexAxis: "y",
   elements: {
     bar: {
       borderWidth: 2,
@@ -45,25 +45,26 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'right',
+      position: "right",
+      display: false, // Hide the legend completely
     },
-    title: {
-      display: true,
-      text: 'Chart.js Horizontal Bar Chart',
-    },
+    // title: {
+    //   display: true,
+    //   text: "Chart.js Horizontal Bar Chart",
+    // },
     datalabels: {
       display: true,
-      color: 'black',
-      align: 'end',
-      anchor: 'end',
-      formatter: (value, context) => {
-        return customLabels[context.dataIndex];
-      },
+      // color: "black",
+      // align: "end",
+      // anchor: "end",
+      // formatter: (value, context) => {
+      //   return customLabels[context.dataIndex];
+      // },
     },
   },
   scales: {
     y: {
-      position: 'right',
+      position: "right",
     },
     x: {
       display: false,
@@ -72,5 +73,5 @@ export const options = {
 };
 
 export default function HorizonBarChart() {
-  return <Bar options={options} data={data} />;
+  return <Bar options={options} data={data}  />;
 }

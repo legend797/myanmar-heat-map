@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-'use client'
-import Map from "./components/Map";
-=======
 import Link from "next/link";
 
->>>>>>> b350a54
 
 export default function Home() {
   return (
